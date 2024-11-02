@@ -4,10 +4,10 @@ import {
   TextField,
   Typography,
   Container,
-  Grid,
+  // Grid,
   Box,
 } from "@mui/material";
-// import Grid from '@mui/material/Grid2';
+import Grid from "@mui/material/Grid2";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -46,16 +46,54 @@ const ContactForm = () => {
         paddingY: "20px",
       }}
     >
-      <Container maxWidth="sm" sx={{ mt: "30px", mb: "30px" }}>
+      <Container sx={{ mt: "30px", mb: "30px" }}>
         <Typography variant="h4" align="center" gutterBottom>
           Contact Us
         </Typography>
         <form onSubmit={handleSubmit}>
-          <Grid container spacing={4}>
-            <Grid item size={{ xs: 12, md: 6 }}></Grid>
-            <Grid item size={{ xs: 12, md: 6 }}>
-              <Grid item xs={12}>
-                <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid
+              item
+              size={{ xs: 12, md: 6, lg: 6 }}
+              sx={{ background: "red" }}
+            >
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro
+                voluptatum doloribus accusamus quam corrupti quod. Placeat
+                voluptatibus error nemo minima nesciunt, autem quae tempora rem
+                dolor provident, doloribus, quas perferendis. Voluptatibus, quia
+                cumque facere sunt ipsa sed labore eaque nostrum expedita
+                delectus repudiandae in itaque fugiat placeat velit dignissimos
+                dolorum blanditiis ducimus explicabo. Maxime perspiciatis
+                laborum suscipit nihil, sapiente hic, sed praesentium vitae
+                corrupti provident dignissimos sunt facere facilis odio nam
+                libero laudantium accusamus in tempore. Dolores dolorem placeat
+                magni, reprehenderit vitae at harum nam nemo corrupti vero, in
+                necessitatibus tenetur architecto ab? Doloremque maiores
+                necessitatibus dignissimos, magnam dolore aliquid totam officia
+                ad nesciunt consequatur tempora accusantium fuga omnis commodi
+                obcaecati! Repudiandae quasi obcaecati molestias ipsa rem,
+                consectetur nihil cum. Ipsum fugiat eius voluptatem corrupti rem
+                optio excepturi non debitis quidem, impedit voluptas? Excepturi,
+                quia. Excepturi perferendis ullam dignissimos iste est beatae
+                voluptatem tenetur iusto. Velit architecto ad dolore. Veniam
+                minima maxime harum nihil dolorum praesentium illum incidunt
+                quo! Quos magnam possimus sapiente. Temporibus placeat earum,
+                atque hic, sed, distinctio aliquam vitae laboriosam voluptatem
+                voluptatibus labore amet quidem. Nihil molestiae voluptatum,
+                corporis dicta beatae illum consequatur, velit, modi quo est
+                perferendis explicabo rem provident animi cupiditate porro
+                eligendi assumenda doloremque!
+              </p>
+            </Grid>
+            <Grid
+            maxWidth="sm"
+              item
+              size={{ xs: 12, md: 6, lg: 6 }}
+              sx={{ background: "blue", padding:"2rem" }}
+            >
+              <Grid item size={{ sx: 12 }}>
+                <Grid item size={{ sx: 12 }}>
                   <TextField
                     fullWidth
                     required
@@ -65,7 +103,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item size={{ sx: 12 }}>
                   <TextField
                     fullWidth
                     required
@@ -76,7 +114,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item size={{ sx: 12 }}>
                   <TextField
                     fullWidth
                     label="Phone"
@@ -85,7 +123,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item size={{ sx: 12 }}>
                   <TextField
                     fullWidth
                     label="Subject"
@@ -94,7 +132,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item size={{ sx: 12 }}>
                   <TextField
                     fullWidth
                     required
@@ -106,8 +144,10 @@ const ContactForm = () => {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12} sx={{ marginTop: "2rem" }}>
+                <Grid item size={{ sx: 12}}>
+                  <Grid item size={{ sx: 4}}>
                   <Button
+                  sx={{ marginTop: "2rem" ,display:"flex", justifyContent:"end", float:"end"}}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -115,6 +155,7 @@ const ContactForm = () => {
                   >
                     Submit
                   </Button>
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
