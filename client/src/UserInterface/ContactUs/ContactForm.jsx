@@ -7,6 +7,7 @@ import {
   Grid,
   Box,
 } from "@mui/material";
+// import Grid from '@mui/material/Grid2';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -50,67 +51,72 @@ const ContactForm = () => {
           Contact Us
         </Typography>
         <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                required
-                label="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                required
-                type="email"
-                label="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Subject"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                required
-                multiline
-                rows={4}
-                label="Message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Submit
-              </Button>
+          <Grid container spacing={4}>
+            <Grid item size={{ xs: 12, md: 6 }}></Grid>
+            <Grid item size={{ xs: 12, md: 6 }}>
+              <Grid item xs={12}>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    required
+                    label="Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    required
+                    type="email"
+                    label="Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    required
+                    multiline
+                    rows={4}
+                    label="Message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12} sx={{ marginTop: "2rem" }}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                  >
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </form>
