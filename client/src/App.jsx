@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./UserInterface/Homepage/Homepage";
 import Services from "./UserInterface/Service/Services";
 import ContactUs from "./UserInterface/ContactUs/ContactUs";
+import AddProperty from "./UserInterface/AddProperty/AddProperty";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/Services" element={<Services />} />
           <Route path="/Contact" element={<ContactUs />} />
+          <Route path="/AddProperty" element={<AddProperty />} />
 
           </Routes>
         </BrowserRouter>
