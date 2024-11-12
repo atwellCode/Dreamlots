@@ -11,30 +11,63 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Box,
+  Switch,
 } from "@mui/material";
+import { styled } from "@mui/system";
+
+const StyledForm = styled("form")({
+  backgroundColor: "#fff",
+  borderRadius: "12px",
+  boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+  padding: "2rem",
+  margin: "2rem auto",
+  maxWidth: "80vw",
+});
+
+const ImageUploadField = styled(TextField)({
+  "& input[type='file']": {
+    cursor: "pointer",
+    padding: "0.8rem",
+  },
+});
+
+const StyledButton = styled(Button)({
+  backgroundColor: "#007bff",
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "#0056b3",
+  },
+});
 
 function AddPropertyForm() {
   const [formData, setFormData] = useState({
     propertyName: "",
+    propertyType: "",
     propertyLocation: "",
     city: "",
+    street: "",
+    address: "",
     price: "",
+    areaSize: "",
     bedrooms: "",
     bathrooms: "",
     floors: "",
-    utilities: {
-      electricity: "no",
-      gas: "no",
-      water: "no",
-      hospital: "no",
-      school: "no",
-      mall: "no",
+    description: "",
+    amenities: {
+      swimmingPool: false,
+      gym: false,
+      security: false,
+      parking: false,
+      electricity: false,
+      gas: false,
+      waterSupply: false,
     },
     garageImage: null,
     virtualTourImage: null,
   });
 
-  // Handle input change for text fields and select fields
+  // Handle input change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -43,19 +76,19 @@ function AddPropertyForm() {
     }));
   };
 
-  // Handle input change for utilities (yes/no fields)
-  const handleUtilityChange = (event) => {
-    const { name, value } = event.target;
+  // Handle amenities changes
+  const handleAmenitiesChange = (event) => {
+    const { name, checked } = event.target;
     setFormData((prevData) => ({
       ...prevData,
-      utilities: {
-        ...prevData.utilities,
-        [name]: value,
+      amenities: {
+        ...prevData.amenities,
+        [name]: checked,
       },
     }));
   };
 
-  // Handle image upload fields
+  // Handle image upload
   const handleImageChange = (event) => {
     const { name, files } = event.target;
     setFormData((prevData) => ({
@@ -68,40 +101,30 @@ function AddPropertyForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    setFormData({
-      propertyName: "",
-      propertyLocation: "",
-      city: "",
-      price: "",
-      bedrooms: "",
-      bathrooms: "",
-      floors: "",
-      utilities: {
-        electricity: "no",
-        gas: "no",
-        water: "no",
-        hospital: "no",
-        school: "no",
-        mall: "no",
-      },
-      garageImage: null,
-      virtualTourImage: null,
-    });
+    alert("Property submitted successfully!");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Typography variant="h4" gutterBottom>
-        Property Form
+    <StyledForm onSubmit={handleSubmit}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Add New Property
       </Typography>
-      <Grid container spacing={2}>
-        {/* Text Fields */}
-        {["propertyName", "propertyLocation", "city", "price"].map((field) => (
-          <Grid item xs={12} sm={6} md={4} key={field}>
+      <Grid container spacing={3}>
+        {/* Basic Information */}
+        {[
+          { label: "Property Name", name: "propertyName" },
+          { label: "Property Location", name: "propertyLocation" },
+          { label: "City", name: "city" },
+          { label: "Street", name: "street" },
+          { label: "Address", name: "address" },
+          { label: "Price", name: "price" },
+          { label: "Area (in feets)", name: "areaSize" },
+        ].map(({ label, name }) => (
+          <Grid item xs={12} sm={6} key={name}>
             <TextField
-              label={field.replace(/([A-Z])/g, " $1").trim()}
-              name={field}
-              value={formData[field]}
+              label={label}
+              name={name}
+              value={formData[name]}
               onChange={handleChange}
               fullWidth
               required
@@ -109,14 +132,37 @@ function AddPropertyForm() {
           </Grid>
         ))}
 
+        {/* Property Type */}
+        <Grid item xs={12} sm={6}>
+          <FormControl fullWidth>
+            <InputLabel>Property Type</InputLabel>
+            <Select
+              name="propertyType"
+              value={formData.propertyType}
+              onChange={handleChange}
+              required
+            >
+              {["House", "Apartment", "Commercial", "Plot"].map((type) => (
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
         {/* Dropdowns for Bedrooms, Bathrooms, Floors */}
-        {["bedrooms", "bathrooms", "floors"].map((field) => (
-          <Grid item xs={12} sm={6} md={4} key={field}>
+        {[
+          { label: "No of Bedrooms", name: "bedrooms" },
+          { label: "No of Bathrooms", name: "bathrooms" },
+          { label: "No of Floors", name: "floors" },
+        ].map(({ label, name }) => (
+          <Grid item xs={12} sm={4} key={name}>
             <FormControl fullWidth>
-              <InputLabel>{field.replace(/([A-Z])/g, " $1").trim()}</InputLabel>
+              <InputLabel>{label}</InputLabel>
               <Select
-                name={field}
-                value={formData[field]}
+                name={name}
+                value={formData[name]}
                 onChange={handleChange}
                 required
               >
@@ -130,63 +176,62 @@ function AddPropertyForm() {
           </Grid>
         ))}
 
-        {/* Utilities Section */}
+        {/* Description */}
         <Grid item xs={12}>
-          <Typography variant="h6" gutterBottom>
-            Utilities
-          </Typography>
-          <Grid container spacing={2}>
-            {["electricity", "gas", "water", "hospital", "school", "mall"].map(
-              (utility) => (
-                <Grid item xs={12} sm={6} md={4} key={utility}>
-                  <FormControl>
-                    <Typography>{utility.replace(/([A-Z])/g, " $1")}</Typography>
-                    <RadioGroup
-                      row
-                      name={utility}
-                      value={formData.utilities[utility]}
-                      onChange={handleUtilityChange}
-                    >
-                      <FormControlLabel value="yes" control={<Radio />} label="Yes" />
-                      <FormControlLabel value="no" control={<Radio />} label="No" />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
-              )
-            )}
-          </Grid>
+          <TextField
+            label="Description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            fullWidth
+            multiline
+            rows={4}
+          />
+        </Grid>
+
+        {/* Amenities */}
+        <Grid item xs={12}>
+          <Typography variant="h6">Facilities</Typography>
+          {Object.keys(formData.amenities).map((amenity) => (
+            <FormControlLabel
+              key={amenity}
+              control={
+                <Switch
+                  checked={formData.amenities[amenity]}
+                  onChange={handleAmenitiesChange}
+                  name={amenity}
+                />
+              }
+              label={amenity.replace(/([A-Z])/g, " $1")}
+            />
+          ))}
         </Grid>
 
         {/* Image Uploads */}
-        <Grid item xs={12} sm={6} md={4}>
-          <TextField
-            label="Garage Image"
-            name="garageImage"
-            type="file"
-            onChange={handleImageChange}
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <TextField
-            label="Virtual Tour Image"
-            name="virtualTourImage"
-            type="file"
-            onChange={handleImageChange}
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-          />
-        </Grid>
+        {[
+          { label: "Garage Image", name: "garageImage" },
+          { label: "Virtual Tour Image", name: "virtualTourImage" },
+        ].map(({ label, name }) => (
+          <Grid item xs={12} sm={6} key={name}>
+            <ImageUploadField
+              label={label}
+              name={name}
+              type="file"
+              onChange={handleImageChange}
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+            />
+          </Grid>
+        ))}
 
         {/* Submit Button */}
-        <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Submit
-          </Button>
+        <Grid item xs={3}>
+          <StyledButton type="submit" variant="contained" fullWidth>
+            Submit Property
+          </StyledButton>
         </Grid>
       </Grid>
-    </form>
+    </StyledForm>
   );
 }
 
