@@ -10,6 +10,7 @@ import ContactUs from "./UserInterface/ContactUs/ContactUs";
 import AddProperty from "./UserInterface/AddProperty/AddProperty";
 // Buyer Page Imports
 import BuyerHomepage from "./BuyerInterface/BuyerHomePage/BuyerHomepage";
+import MessageForm from "./BuyerInterface/MessageForm/MessageForm";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 
           {/* Buyer Interface */}
           <Route path="/buyer" element={<BuyerHomepage />} />
+          <Route path="/messageform" element={<MessageForm />} />
           </Routes>
         </BrowserRouter>
     </>
