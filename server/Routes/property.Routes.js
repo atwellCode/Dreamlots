@@ -6,18 +6,18 @@ const upload = require('../Middleware/upload');
 // Routes for property operations
 
 // Add a new property with image uploads
-router.post('/add', upload,propertyController.addProperty);
+router.post('/addProperty', upload,propertyController.addProperty);
 
 // Get all properties
-router.get('/get', propertyController.getAllProperties);
+router.get('/getProperty', propertyController.getAllProperties);
 
 // Get a property by ID
-router.get('/:id', propertyController.getPropertyById);
+router.get('/getPropertyBy/:id', propertyController.getPropertyById);
 
 // Update a property by ID (with new images if provided)
-router.put('/update/:id', propertyController.updatePropertyById);
+router.put('/updateProperty/:id', upload , propertyController.updatePropertyById);
 
 // Delete a property by ID
-router.delete('/delete/:id', propertyController.deletePropertyById);
+router.delete('/deleteProperty/:id', propertyController.deletePropertyById);
 
 module.exports = router;

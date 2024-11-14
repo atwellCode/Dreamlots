@@ -105,46 +105,26 @@ exports.getPropertyById = async (req, res) => {
 
 // Update a property by ID
 exports.updatePropertyById = async (req, res) => {
-  upload(req, res, async (err) => {
-    if (err) {
-      return res.status(400).json({ error: err.message });
-    }
-
-    const { propertyName, propertyType, propertyLocation, city, street, address, price, areaSize, bedrooms, bathrooms, floors, description, amenities } = req.body;
-    const images = req.files ? req.files.map(file => file.filename) : [];
-
+    const propertyId = req.params.id;
+    const updatedData = req.body;
+  
     try {
-      const updatedData = {
-        propertyName,
-        propertyType,
-        propertyLocation,
-        city,
-        street,
-        address,
-        price,
-        areaSize,
-        bedrooms,
-        bathrooms,
-        floors,
-        description,
-        amenities: JSON.parse(amenities),
-      };
-
-      if (images.length > 0) {
-        updatedData.images = images;
-      }
-
-      const updatedProperty = await Property.findByIdAndUpdate(req.params.id, updatedData, { new: true });
-
+      const updatedProperty = await Property.findByIdAndUpdate(
+        propertyId,
+        updatedData,
+        { new: true }
+      );
+  
       if (!updatedProperty) {
-        return res.status(404).json({ message: 'Property not found' });
+        return res.status(404).json({ error: "Property not found" });
       }
-      res.status(200).json({ message: 'Property updated successfully', property: updatedProperty });
+  
+      res.status(200).json(updatedProperty);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  });
-};
+  };
+  
 
 // Delete a property by ID
 exports.deletePropertyById = async (req, res) => {
