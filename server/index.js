@@ -1,30 +1,26 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
+const connectDB = require('./db/dbConnection.db');
+const propertyRoutes = require('./Routes/property.Routes');
 
 const app = express();
 
-// Middleware setup
-app.use(bodyParser.json()); // Parses incoming JSON requests
-app.use(cors()); // Enables CORS
-
-const mongoURI = process.env.MONGO_URI;
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect(mongoURI)
-  .then(() => {
-    console.log('Database Conntected Successfully!!!');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-  });
-// Default route
-app.get('/', (req, res) => {
-  res.send('Hello Arslan!');
-});
+connectDB();
 
-// Start the server
-const port = process.env.PORT;
-app.listen(port, () => console.log(`Server is running on port ${port}!`));
+// Routes
+app.use("/property", propertyRoutes);
+
+
+// Define the port from .env file or fallback to 3000
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`The server is running on port ${port}`);
+});
