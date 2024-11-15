@@ -23,7 +23,7 @@ app.use("/user", userRoutes);
 
 
 // Define the port from .env file or fallback to 3000
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3005;
 app.listen(port, () => {
   console.log(`The server is running on port ${port}`);
 });

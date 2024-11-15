@@ -1,20 +1,16 @@
 import React from "react";
 import { Box, Typography, Drawer } from "@mui/material";
 import SideNavbar from "../SideNavbar/SideNavbar";
-import Header from "../Header/Header";
 
-function SellerHomePage() {
+function SellerProperty() {
   return (
-    <>
-    <Header/>
     <Box sx={{ display: "flex" }}>
       <SideNavbar />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Typography variant="h4">This is the seller Home Page</Typography>
+        <Typography variant="h4">This is the seller property Page</Typography>
       </Box>
     </Box>
-    </>
   );
 }
 
-export default SellerHomePage;
+export default SellerProperty;

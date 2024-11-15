@@ -8,9 +8,14 @@ import Homepage from "./UserInterface/Homepage/Homepage";
 import Services from "./UserInterface/Service/Services";
 import ContactUs from "./UserInterface/ContactUs/ContactUs";
 import AddProperty from "./UserInterface/AddProperty/AddProperty";
-// Buyer Page Imports
-import SellerHomepage from "./SellerInterface/SellerHomePage/SellerHomepage";
-import MessageForm from "./SellerInterface/MessageForm/MessageForm";
+// Seller Page Imports
+import SellerHomePage from "./SellerInterface/SellerHomePage/SellerHomepage";
+import SellerProperty from "./SellerInterface/SellerProperty/SellerProperty";
+import SellerAddProperty from "./SellerInterface/SellerAddProperty/SellerAddProperty";
+import SellerChat from "./SellerInterface/SellerChat/SellerChat";
+import SellerVirtualTour from "./SellerInterface/SellerVirtuaTour/SellerVirtualTour";
+import SellerLogout from "./SellerInterface/SellerAuth/SellerLogout";
+
 
 
 function App() {
@@ -26,12 +31,16 @@ function App() {
           <Route path="/AddProperty" element={<AddProperty />} />
 
           {/* Buyer Interface */}
-          <Route path="/seller" element={<SellerHomepage />} />
-          <Route path="/messageform" element={<MessageForm />} />
+          <Route path="/seller" element={<SellerHomePage />} />
+          <Route path="/seller-property" element={<SellerProperty />} />
+          <Route path="/seller-add-property" element={<SellerAddProperty />} />
+          <Route path="/Seller-Chat" element={<SellerChat />} />
+          <Route path="/seller-virtual-tour" element={<SellerVirtualTour />} />
+          <Route path="/seller-logout" element={<SellerLogout />} />
           </Routes>
         </BrowserRouter>
     </>
   );
 }
-
+ 
 export default App;
