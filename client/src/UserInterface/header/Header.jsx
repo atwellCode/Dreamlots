@@ -24,13 +24,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import AddHomeOutlinedIcon from "@mui/icons-material/AddHomeOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import PanoramaPhotosphereOutlinedIcon from "@mui/icons-material/PanoramaPhotosphereOutlined";
 import SettingsSuggestOutlinedIcon from "@mui/icons-material/SettingsSuggestOutlined";
-import RoofingOutlinedIcon from "@mui/icons-material/RoofingOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import GiteOutlinedIcon from "@mui/icons-material/GiteOutlined";
 import { styled } from "@mui/system";
 import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DreamlotsLogo from "../../assets/logo.png"
 
 const Logo = styled("div")({
@@ -58,8 +57,7 @@ const Header = () => {
   const [profileMenuAnchorEl, setProfileMenuAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [propertiesMenuOpen, setPropertiesMenuOpen] = useState(false);
-  const isLoggedIn = false; // Replace this with actual login state
-
+  const isLoggedIn = false;
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -133,14 +131,14 @@ const Header = () => {
           </List>
         </Collapse>
         <Divider />
-        <ListItem button sx={{ paddingLeft: 3 }} component={Link} to="/service">
+        <ListItem button sx={{ paddingLeft: 3 }} component={Link} to="/Services">
           <ListItemText primary="Services" />
         </ListItem>
         <ListItem
           button
           sx={{ paddingLeft: 3 }}
           component={Link}
-          to="/createPost"
+          to="/AddProperty"
         >
           <ListItemText primary="Add Property" />
         </ListItem>
@@ -148,7 +146,7 @@ const Header = () => {
           button
           sx={{ paddingLeft: 3 }}
           component={Link}
-          to="/contactUs"
+          to="/Contact"
         >
           <ListItemText primary="Contact Us" />
         </ListItem>
@@ -181,7 +179,7 @@ const Header = () => {
 
   return (
     <AppBar
-      position="static"
+      position="Static"
       sx={{
         backgroundColor: "#F8F9FA",
         color: "black",
@@ -202,7 +200,7 @@ const Header = () => {
           <MenuButton
             color="inherit"
             component={Link}
-            to="/home"
+            to="/"
             sx={{ marginRight: 4 }}
             startIcon={<GiteOutlinedIcon />}
           >
@@ -240,7 +238,7 @@ const Header = () => {
           <MenuButton
             color="inherit"
             component={Link}
-            to="/service"
+            to="/Services"
             sx={{ marginRight: 4 }}
             startIcon={<SettingsSuggestOutlinedIcon />}
           >
@@ -250,7 +248,7 @@ const Header = () => {
             color="inherit"
             sx={{ marginRight: 4 }}
             component={Link}
-            to="/contactUs"
+            to="/Contact"
             startIcon={<LocalPhoneOutlinedIcon />}
           >
             Contact Us
@@ -259,7 +257,7 @@ const Header = () => {
             color="inherit"
             sx={{ marginRight: 4 }}
             component={Link}
-            to="/createPost"
+            to="/AddProperty"
             startIcon={<AddHomeOutlinedIcon />}
           >
             Add Property

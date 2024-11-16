@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../header/header";
+import Header from "../header/Header";
 import HomeHeroSection from "./HomeHeroSection";
 import HomeCard from "./HomeCard";
 import HomeProperty from "./HomeProperty";
