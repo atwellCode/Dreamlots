@@ -20,7 +20,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import { useNavigate } from "react-router-dom";
-import { useAppStore } from "../AppStore";
+import { useAppStore } from "../../SellerInterface/AppStore";
 
 const drawerWidth = 240;
 
@@ -79,7 +79,7 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-export default function SideNavbar() {
+export default function AdminSideNav() {
   const theme = useTheme();
 //   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
