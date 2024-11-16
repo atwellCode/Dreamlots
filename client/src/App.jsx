@@ -17,7 +17,12 @@ import SellerVirtualTour from "./SellerInterface/SellerVirtuaTour/SellerVirtualT
 import SellerLogout from "./SellerInterface/SellerAuth/SellerLogout";
 // Admin Interface Imports
 import AdminHomepage from "./AdminInterface/AdminHomePage/AdminHomepage";
-
+import AdminAnalytics from "./AdminInterface/AdminHomePage/AdminAnalytics";
+import AdminCustomer from "./AdminInterface/AdminHomePage/AdminCustomer";
+import AdminMessages from "./AdminInterface/AdminHomePage/AdminMessages";
+import AdminPropertyPage from "./AdminInterface/AdminHomePage/AdminPropertyPage";
+import AdminLogout from "./AdminInterface/AdminHomePage/AdminLogout";
+import AdminSetting from "./AdminInterface/AdminHomePage/AdminSetting";
 
 
 function App() {
@@ -41,6 +46,12 @@ function App() {
           <Route path="/seller-logout" element={<SellerLogout />} />
           {/* Admin Interface */}
           <Route path="/admin" element={<AdminHomepage />} />
+          <Route path="/admin-analytics" element={<AdminAnalytics />} />
+          <Route path="/admin-customer" element={<AdminCustomer />} />
+          <Route path="/admin-messages" element={<AdminMessages />} />
+          <Route path="/admin-property" element={<AdminPropertyPage />} />
+          <Route path="/admin-logout" element={<AdminLogout />} />
+          <Route path="/admin-setting" element={<AdminSetting />} />
 
           </Routes>
         </BrowserRouter>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, TextField, Button, Grid, FormControlLabel, Checkbox, FormGroup, Paper, InputAdornment, Snackbar } from "@mui/material";
+import { Box, Typography, TextField, Button, Grid, FormControlLabel, Checkbox, FormGroup, Paper, InputAdornment, Snackbar, Card } from "@mui/material";
 import { Alert } from '@mui/lab';
 import axios from "axios";
 import SellerHeader from "../SellerHeader/SellerHeader";
@@ -7,7 +7,6 @@ import SideNavbar from "../SideNavbar/SideNavbar";
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 function SellerAddProperty() {
-  // State to hold form data and error messages
   const [formData, setFormData] = useState({
     propertyName: "",
     propertyType: "",
@@ -34,7 +33,6 @@ function SellerAddProperty() {
     virtualTourImage: [],
   });
 
-  // Error state for each field
   const [errors, setErrors] = useState({
     propertyName: "",
     propertyType: "",
@@ -50,25 +48,18 @@ function SellerAddProperty() {
     description: "",
   });
 
-  // Snackbar state for success message
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
 
-    // Remove error when the user starts typing
     setErrors({
       ...errors,
       [name]: value ? "" : "Input must be filled",
     });
   };
 
-  // Handle amenities checkbox change
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
     setFormData({
@@ -80,21 +71,15 @@ function SellerAddProperty() {
     });
   };
 
-  // Handle file input change
   const handleFileChange = (e) => {
     const { name } = e.target;
     const files = Array.from(e.target.files);
-    setFormData({
-      ...formData,
-      [name]: files,
-    });
+    setFormData({ ...formData, [name]: files });
   };
 
-  // Submit form and save data
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check for empty fields and show error messages
     let validationErrors = {};
     Object.keys(formData).forEach((key) => {
       if (!formData[key] && key !== "amenities" && key !== "garageImage" && key !== "virtualTourImage") {
@@ -108,13 +93,9 @@ function SellerAddProperty() {
     }
 
     try {
-      // Send form data to the backend
       const response = await axios.post("http://localhost:3005/property/addProperty", formData);
-      
-      // Show success message
       setOpenSnackbar(true);
 
-      // Reset the form after successful submission
       setFormData({
         propertyName: "",
         propertyType: "",
@@ -155,10 +136,10 @@ function SellerAddProperty() {
             Add Property
           </Typography>
 
-          <Paper sx={{ padding: 3, borderRadius: 2, boxShadow: 3 }}>
+          <Paper sx={{ padding: 3, borderRadius: 2, boxShadow: 3, backgroundColor: "#f9f9f9" }}>
             <form onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                {/* Property Name */}
+              <Grid container spacing={3}>
+
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Property Name"
@@ -169,10 +150,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.propertyName)}
                     helperText={errors.propertyName}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Property Type */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Property Type"
@@ -183,10 +165,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.propertyType)}
                     helperText={errors.propertyType}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Property Location */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Property Location"
@@ -197,10 +180,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.propertyLocation)}
                     helperText={errors.propertyLocation}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* City */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="City"
@@ -211,10 +195,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.city)}
                     helperText={errors.city}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Street */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Street"
@@ -225,10 +210,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.street)}
                     helperText={errors.street}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Address */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Address"
@@ -239,10 +225,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.address)}
                     helperText={errors.address}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Price */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Price"
@@ -254,13 +241,14 @@ function SellerAddProperty() {
                     error={Boolean(errors.price)}
                     helperText={errors.price}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                     InputProps={{
                       startAdornment: <InputAdornment position="start">$</InputAdornment>,
                     }}
                   />
                 </Grid>
 
-                {/* Area Size */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Area Size (sq ft)"
@@ -271,10 +259,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.areaSize)}
                     helperText={errors.areaSize}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Bedrooms */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Bedrooms"
@@ -286,10 +275,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.bedrooms)}
                     helperText={errors.bedrooms}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Bathrooms */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Bathrooms"
@@ -301,10 +291,11 @@ function SellerAddProperty() {
                     error={Boolean(errors.bathrooms)}
                     helperText={errors.bathrooms}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Floors */}
                 <Grid item xs={12} sm={6} md={4}>
                   <TextField
                     label="Floors"
@@ -316,11 +307,12 @@ function SellerAddProperty() {
                     error={Boolean(errors.floors)}
                     helperText={errors.floors}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2 }}
                   />
                 </Grid>
 
-                {/* Description */}
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12}>
                   <TextField
                     label="Description"
                     fullWidth
@@ -330,146 +322,101 @@ function SellerAddProperty() {
                     error={Boolean(errors.description)}
                     helperText={errors.description}
                     required
+                    variant="outlined"
+                    sx={{ borderRadius: 2, borderBottom: "2px solid #2C387E" }}
                     multiline
                     rows={4}
                   />
                 </Grid>
 
-                {/* Amenities */}
                 <Grid item xs={12}>
-                  <FormGroup row>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.swimmingPool}
-                          onChange={handleCheckboxChange}
-                          name="swimmingPool"
+                  <Typography variant="subtitle1" gutterBottom>
+                    Amenities
+                  </Typography>
+                  <FormGroup row sx={{ justifyContent: "space-between" }}>
+                    {Object.keys(formData.amenities).map((amenity, index) => (
+                      <Grid item xs={4} key={amenity}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              checked={formData.amenities[amenity]}
+                              onChange={handleCheckboxChange}
+                              name={amenity}
+                            />
+                          }
+                          label={amenity.replace(/([A-Z])/g, ' $1').toUpperCase()}
                         />
-                      }
-                      label="Swimming Pool"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.gym}
-                          onChange={handleCheckboxChange}
-                          name="gym"
-                        />
-                      }
-                      label="Gym"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.security}
-                          onChange={handleCheckboxChange}
-                          name="security"
-                        />
-                      }
-                      label="Security"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.parking}
-                          onChange={handleCheckboxChange}
-                          name="parking"
-                        />
-                      }
-                      label="Parking"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.electricity}
-                          onChange={handleCheckboxChange}
-                          name="electricity"
-                        />
-                      }
-                      label="Electricity"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.gas}
-                          onChange={handleCheckboxChange}
-                          name="gas"
-                        />
-                      }
-                      label="Gas"
-                    />
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={formData.amenities.waterSupply}
-                          onChange={handleCheckboxChange}
-                          name="waterSupply"
-                        />
-                      }
-                      label="Water Supply"
-                    />
+                      </Grid>
+                    ))}
                   </FormGroup>
+                  <hr style={{ borderTop: "2px solid #2C387E" }} />
                 </Grid>
 
-                {/* File Uploads */}
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={6}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     component="label"
-                    startIcon={<AttachFileIcon />}
                     fullWidth
+                    sx={{
+                      borderRadius: 2,
+                      backgroundColor: "#2C387E",
+                    }}
                   >
                     Upload Garage Image
                     <input
                       type="file"
-                      hidden
-                      multiple
                       name="garageImage"
+                      accept="image/*"
                       onChange={handleFileChange}
+                      hidden
                     />
+                    <AttachFileIcon />
                   </Button>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={6}>
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     component="label"
-                    startIcon={<AttachFileIcon />}
                     fullWidth
+                    sx={{
+                      borderRadius: 2,
+                      backgroundColor: "#2C387E",
+                    }}
                   >
                     Upload Virtual Tour Image
                     <input
                       type="file"
-                      hidden
-                      multiple
                       name="virtualTourImage"
+                      accept="image/*"
                       onChange={handleFileChange}
+                      hidden
                     />
+                    <AttachFileIcon />
                   </Button>
                 </Grid>
 
-                {/* Submit Button */}
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                   <Button
-                    variant="contained"
                     type="submit"
+                    variant="contained"
                     fullWidth
-                    sx={{ mt: 2 }}
+                    sx={{
+                      borderRadius: 2,
+                      backgroundColor: "#2C387E",
+                      fontSize: "1.1rem",
+                    }}
                   >
-                    Add Property
+                    Submit Property
                   </Button>
                 </Grid>
+
               </Grid>
             </form>
           </Paper>
 
-          {/* Success Snackbar */}
-          <Snackbar
-            open={openSnackbar}
-            autoHideDuration={3000}
-            onClose={() => setOpenSnackbar(false)}
-          >
-            <Alert onClose={() => setOpenSnackbar(false)} severity="success">
+          <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={() => setOpenSnackbar(false)}>
+            <Alert onClose={() => setOpenSnackbar(false)} severity="success" sx={{ width: "100%" }}>
               Property added successfully!
             </Alert>
           </Snackbar>

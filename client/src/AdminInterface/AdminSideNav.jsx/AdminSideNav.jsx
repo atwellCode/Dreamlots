@@ -102,7 +102,7 @@ export default function AdminSideNav() {
         <Divider />
         <List>
           
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/seller")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin")}}>
             <ListItemButton
               sx={[
                 {
@@ -136,7 +136,7 @@ export default function AdminSideNav() {
                 <PersonPinIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Profile"
+                primary="Dashboard"
                 sx={[
                   open
                     ? {
@@ -149,7 +149,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/seller-property")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-analytics")}}>
             <ListItemButton
               sx={[
                 {
@@ -183,7 +183,7 @@ export default function AdminSideNav() {
                 <ApartmentIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Properties"
+                primary="Analytics"
                 sx={[
                   open
                     ? {
@@ -196,7 +196,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/seller-add-property")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-customer")}}>
             <ListItemButton
               sx={[
                 {
@@ -230,7 +230,7 @@ export default function AdminSideNav() {
                 <AddBusinessIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Add Property"
+                primary="Manage Customer"
                 sx={[
                   open
                     ? {
@@ -243,7 +243,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/Seller-Chat")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-property")}}>
             <ListItemButton
               sx={[
                 {
@@ -277,7 +277,7 @@ export default function AdminSideNav() {
                 <ChatIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Chat"
+                primary="Manage Property"
                 sx={[
                   open
                     ? {
@@ -290,7 +290,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/seller-virtual-tour")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-messages")}}>
             <ListItemButton
               sx={[
                 {
@@ -324,7 +324,7 @@ export default function AdminSideNav() {
                 <ViewInArIcon />
               </ListItemIcon>
               <ListItemText
-                primary="Virtual Tour"
+                primary="Messages"
                 sx={[
                   open
                     ? {
@@ -337,7 +337,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/seller-logout")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-logout")}}>
             <ListItemButton
               sx={[
                 {
