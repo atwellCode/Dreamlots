@@ -14,7 +14,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PersonPinIcon from '@mui/icons-material/PersonPin';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import PeopleIcon from '@mui/icons-material/People';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import BusinessIcon from '@mui/icons-material/Business';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ChatIcon from '@mui/icons-material/Chat';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -102,7 +106,7 @@ export default function AdminSideNav() {
         <Divider />
         <List>
           
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin")}}>
+          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-home")}}>
             <ListItemButton
               sx={[
                 {
@@ -133,7 +137,7 @@ export default function AdminSideNav() {
                       },
                 ]}
               >
-                <PersonPinIcon />
+                <DashboardIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Dashboard"
@@ -149,53 +153,7 @@ export default function AdminSideNav() {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-analytics")}}>
-            <ListItemButton
-              sx={[
-                {
-                  minHeight: 48,
-                  px: 2.5,
-                },
-                open
-                  ? {
-                      justifyContent: "initial",
-                    }
-                  : {
-                      justifyContent: "center",
-                    },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: "center",
-                  },
-                  open
-                    ? {
-                        mr: 3,
-                      }
-                    : {
-                        mr: "auto",
-                      },
-                ]}
-              >
-                <ApartmentIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary="Analytics"
-                sx={[
-                  open
-                    ? {
-                        opacity: 1,
-                      }
-                    : {
-                        opacity: 0,
-                      },
-                ]}
-              />
-            </ListItemButton>
-          </ListItem>
+          
           <ListItem disablePadding sx={{ display: "block" }} onClick={()=>{navigate("/admin-customer")}}>
             <ListItemButton
               sx={[
@@ -227,7 +185,7 @@ export default function AdminSideNav() {
                       },
                 ]}
               >
-                <AddBusinessIcon />
+                <SupportAgentIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Manage Customer"
@@ -274,7 +232,7 @@ export default function AdminSideNav() {
                       },
                 ]}
               >
-                <ChatIcon />
+                <BusinessIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Manage Property"
@@ -321,7 +279,7 @@ export default function AdminSideNav() {
                       },
                 ]}
               >
-                <ViewInArIcon />
+                <ChatIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Messages"

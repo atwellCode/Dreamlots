@@ -16,6 +16,7 @@ import SellerChat from "./SellerInterface/SellerChat/SellerChat";
 import SellerVirtualTour from "./SellerInterface/SellerVirtuaTour/SellerVirtualTour";
 import SellerLogout from "./SellerInterface/SellerAuth/SellerLogout";
 // Admin Interface Imports
+import AdminLogin from "./AdminInterface/AdminHomePage/AdminLogin";
 import AdminHomepage from "./AdminInterface/AdminHomePage/AdminHomepage";
 import AdminAnalytics from "./AdminInterface/AdminHomePage/AdminAnalytics";
 import AdminCustomer from "./AdminInterface/AdminHomePage/AdminCustomer";
@@ -23,15 +24,15 @@ import AdminMessages from "./AdminInterface/AdminHomePage/AdminMessages";
 import AdminPropertyPage from "./AdminInterface/AdminHomePage/AdminPropertyPage";
 import AdminLogout from "./AdminInterface/AdminHomePage/AdminLogout";
 import AdminSetting from "./AdminInterface/AdminHomePage/AdminSetting";
-
+// Compornts Import
+import AdminProtectionRoutes from "./Components/AdminProtectionRoutes";
 
 function App() {
   return (
     <>
-     
-        <BrowserRouter>
-          <Routes>
-            {/* User Interface */}
+      <BrowserRouter>
+        <Routes>
+          {/* User Interface */}
           <Route path="/" element={<Homepage />} />
           <Route path="/Services" element={<Services />} />
           <Route path="/Contact" element={<ContactUs />} />
@@ -45,18 +46,19 @@ function App() {
           <Route path="/seller-virtual-tour" element={<SellerVirtualTour />} />
           <Route path="/seller-logout" element={<SellerLogout />} />
           {/* Admin Interface */}
-          <Route path="/admin" element={<AdminHomepage />} />
-          <Route path="/admin-analytics" element={<AdminAnalytics />} />
-          <Route path="/admin-customer" element={<AdminCustomer />} />
-          <Route path="/admin-messages" element={<AdminMessages />} />
-          <Route path="/admin-property" element={<AdminPropertyPage />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          {/* <Route path="/admin-home" element={<AdminHomepage />} /> */}
+          <Route path="/admin-home" element={<AdminProtectionRoutes><AdminHomepage /></AdminProtectionRoutes>}/>
+          <Route path="/admin-analytics" element={<AdminProtectionRoutes><AdminAnalytics /></AdminProtectionRoutes>} />
+          <Route path="/admin-customer" element={<AdminProtectionRoutes><AdminCustomer /></AdminProtectionRoutes>} />
+          <Route path="/admin-messages" element={<AdminProtectionRoutes><AdminMessages /></AdminProtectionRoutes>} />
+          <Route path="/admin-property" element={<AdminProtectionRoutes><AdminPropertyPage /></AdminProtectionRoutes>} />
+          <Route path="/admin-setting" element={<AdminProtectionRoutes><AdminSetting /></AdminProtectionRoutes>} />
           <Route path="/admin-logout" element={<AdminLogout />} />
-          <Route path="/admin-setting" element={<AdminSetting />} />
-
-          </Routes>
-        </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
- 
+
 export default App;
