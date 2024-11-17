@@ -19,6 +19,7 @@ function ServiceCard() {
             data-aos="fade-up"
             data-aos-delay="300"
             sx={{
+               backgroundColor:"#fAf1fA",
               padding: "2rem",
               textAlign: "center",
               color: "#333",
@@ -51,6 +52,7 @@ function ServiceCard() {
             data-aos="fade-up"
             data-aos-delay="400"
             sx={{
+               backgroundColor:"#fAf1fA",
               padding: "2rem",
               textAlign: "center",
               color: "#333",
@@ -83,6 +85,7 @@ function ServiceCard() {
             data-aos="fade-up"
             data-aos-delay="500"
             sx={{
+               backgroundColor:"#fAf1fA",
               padding: "2rem",
               textAlign: "center",
               color: "#333",

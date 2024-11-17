@@ -14,6 +14,8 @@ import SellerProperty from "./SellerInterface/SellerProperty/SellerProperty";
 import SellerAddProperty from "./SellerInterface/SellerAddProperty/SellerAddProperty";
 import SellerChat from "./SellerInterface/SellerChat/SellerChat";
 import SellerVirtualTour from "./SellerInterface/SellerVirtuaTour/SellerVirtualTour";
+import SellerSignUp from "./SellerInterface/SellerAuth/SellerSignUp";
+import SellerLogin from "./SellerInterface/SellerAuth/SellerLogin";
 import SellerLogout from "./SellerInterface/SellerAuth/SellerLogout";
 // Admin Interface Imports
 import AdminLogin from "./AdminInterface/AdminHomePage/AdminLogin";
@@ -44,6 +46,8 @@ function App() {
           <Route path="/seller-add-property" element={<SellerAddProperty />} />
           <Route path="/Seller-Chat" element={<SellerChat />} />
           <Route path="/seller-virtual-tour" element={<SellerVirtualTour />} />
+          <Route path="/seller-signup" element={<SellerSignUp />} />
+          <Route path="/seller-login" element={<SellerLogin />} />
           <Route path="/seller-logout" element={<SellerLogout />} />
           {/* Admin Interface */}
           <Route path="/admin-login" element={<AdminLogin />} />

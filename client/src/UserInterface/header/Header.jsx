@@ -30,7 +30,7 @@ import GiteOutlinedIcon from "@mui/icons-material/GiteOutlined";
 import { styled } from "@mui/system";
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import DreamlotsLogo from "../../assets/logo.png"
+import DreamlotsLogo from "../../assets/logo.png";
 
 const Logo = styled("div")({
   display: "flex",
@@ -100,6 +100,9 @@ const Header = () => {
       onKeyDown={(event) => event.stopPropagation()}
     >
       <List>
+        <ListItem button sx={{ paddingLeft: 3 }} component={Link} to="/">
+          <ListItemText primary="Home" />
+        </ListItem>
         <ListItem
           button
           onClick={handlePropertiesMenuToggle}
@@ -131,7 +134,12 @@ const Header = () => {
           </List>
         </Collapse>
         <Divider />
-        <ListItem button sx={{ paddingLeft: 3 }} component={Link} to="/Services">
+        <ListItem
+          button
+          sx={{ paddingLeft: 3 }}
+          component={Link}
+          to="/Services"
+        >
           <ListItemText primary="Services" />
         </ListItem>
         <ListItem
@@ -142,12 +150,7 @@ const Header = () => {
         >
           <ListItemText primary="Add Property" />
         </ListItem>
-        <ListItem
-          button
-          sx={{ paddingLeft: 3 }}
-          component={Link}
-          to="/Contact"
-        >
+        <ListItem button sx={{ paddingLeft: 3 }} component={Link} to="/Contact">
           <ListItemText primary="Contact Us" />
         </ListItem>
       </List>
@@ -159,13 +162,24 @@ const Header = () => {
           </ListItem>
         ) : (
           <>
-            <ListItem button sx={{ paddingLeft: 3 }}>
+            <ListItem
+              button
+              sx={{ paddingLeft: 3 }}
+              component={Link}
+              to="/seller-login"
+            >
               <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
+
               <ListItemText primary="Login" />
             </ListItem>
-            <ListItem button sx={{ paddingLeft: 3 }}>
+            <ListItem
+              button
+              sx={{ paddingLeft: 3 }}
+              component={Link}
+              to="/seller-signup"
+            >
               <ListItemIcon>
                 <PersonAddIcon />
               </ListItemIcon>
@@ -287,7 +301,7 @@ const Header = () => {
                 <ProfileMenuItem
                   onClick={handleProfileMenuClose}
                   component={Link}
-                  to="/login"
+                  to="/seller-login"
                 >
                   <LoginIcon sx={{ marginRight: 3 }} />
                   Login
@@ -295,7 +309,7 @@ const Header = () => {
                 <ProfileMenuItem
                   onClick={handleProfileMenuClose}
                   component={Link}
-                  to="/signup"
+                  to="/seller-signup"
                 >
                   <PersonAddIcon sx={{ marginRight: 3 }} />
                   Sign Up
