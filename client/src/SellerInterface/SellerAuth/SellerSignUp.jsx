@@ -25,49 +25,50 @@ function SellerSignUp() {
     confirmPassword: "",
   });
 
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
+  const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
   // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    setErrors({ ...errors, [name]: "" }); // Clear error for this field
+  };
+
+  // Validate fields
+  const validateFields = () => {
+    const newErrors = {};
+    Object.keys(formData).forEach((key) => {
+      if (!formData[key]) {
+        newErrors[key] = "This field is required.";
+      }
+    });
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setSuccess("");
+    setServerError("");
 
-    const {
-      name,
-      lastName,
-      username,
-      email,
-      phone,
-      cnicNumber,
-      password,
-      confirmPassword,
-    } = formData;
-
-    // Check if all fields are filled
-    if (!name || !lastName || !username || !email || !phone || !cnicNumber || !password || !confirmPassword) {
-      setError("All fields are required.");
-      return;
-    }
-
-    // Check if passwords match
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
+    // Validate fields before submitting
+    if (!validateFields()) return;
 
     try {
-      // Send data to backend
-      const response = await axios.post("http://localhost:3005/user/addUser", formData);
-      if (response.status === 200) {
+      const response = await axios.post(
+        "http://localhost:3005/user/addUser",
+        formData
+      );
+      if (response.status === 201) {
         setSuccess("Account created successfully!");
         setFormData({
           name: "",
@@ -81,7 +82,9 @@ function SellerSignUp() {
         });
       }
     } catch (err) {
-      setError("Failed to create account. Please try again.");
+      setServerError(
+        err.response?.data?.error || "Failed to create account. Please try again."
+      );
     }
   };
 
@@ -104,14 +107,22 @@ function SellerSignUp() {
         </Typography>
 
         {/* Error & Success Alerts */}
-        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
-        {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
+        {serverError && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {serverError}
+          </Alert>
+        )}
+        {success && (
+          <Alert severity="success" sx={{ mb: 2 }}>
+            {success}
+          </Alert>
+        )}
 
         {/* Sign-Up Form */}
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <Grid container spacing={2}>
             {/* First Row */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="First Name"
                 fullWidth
@@ -119,9 +130,11 @@ function SellerSignUp() {
                 value={formData.name}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.name}
+                helperText={errors.name}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Last Name"
                 fullWidth
@@ -129,11 +142,13 @@ function SellerSignUp() {
                 value={formData.lastName}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.lastName}
+                helperText={errors.lastName}
               />
             </Grid>
 
             {/* Second Row */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Username"
                 fullWidth
@@ -141,9 +156,11 @@ function SellerSignUp() {
                 value={formData.username}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.username}
+                helperText={errors.username}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Email"
                 type="email"
@@ -152,11 +169,13 @@ function SellerSignUp() {
                 value={formData.email}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.email}
+                helperText={errors.email}
               />
             </Grid>
 
             {/* Third Row */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Phone Number"
                 fullWidth
@@ -164,9 +183,11 @@ function SellerSignUp() {
                 value={formData.phone}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.phone}
+                helperText={errors.phone}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="CNIC Number"
                 fullWidth
@@ -174,11 +195,13 @@ function SellerSignUp() {
                 value={formData.cnicNumber}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.cnicNumber}
+                helperText={errors.cnicNumber}
               />
             </Grid>
 
             {/* Fourth Row */}
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Password"
                 type="password"
@@ -187,9 +210,11 @@ function SellerSignUp() {
                 value={formData.password}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.password}
+                helperText={errors.password}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 label="Confirm Password"
                 type="password"
@@ -198,6 +223,8 @@ function SellerSignUp() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 margin="normal"
+                error={!!errors.confirmPassword}
+                helperText={errors.confirmPassword}
               />
             </Grid>
           </Grid>
