@@ -49,18 +49,15 @@ const userSchema = new mongoose.Schema({
       message: 'Passwords do not match',
     },
   },
-  // profileImage: {
-  //   type: String,
-  //   default: null,
-  // },
-  // cnicFrontImage: {
-  //   type: String,
-  //   default: null,
-  // },
-  // cnicBackImage: {
-  //   type: String,
-  //   default: null,
-  // },
+  profileImage: {
+    type: String,
+  },
+  cnicFrontImage: {
+    type: String,
+  },
+  cnicBackImage: {
+    type: String,
+  },
 }, { timestamps: true });
 
 // Middleware to delete the confirmPassword field before saving to the database
