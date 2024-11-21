@@ -1,17 +1,15 @@
 import React from "react";
 import Header from "../header/Header";
+import BuyPropertyContent from "./BuyPropertyContent";
 import HomeFooter from "../Homepage/HomeFooter";
-import ServiceHero from "./ServiceHero";
-import ServiceCard from "./ServiceCard";
 
-function Services() {
+function BuyProperty() {
   return (
     <>
       <Header />
-      <ServiceHero />
-      <ServiceCard />
+      <BuyPropertyContent/>
       <HomeFooter />
     </>
   );
 }
-export default Services;
+export default BuyProperty;

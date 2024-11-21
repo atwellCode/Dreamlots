@@ -5,6 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 // User Interface Imports
 import Homepage from "./UserInterface/Homepage/Homepage";
+import RentProperty from "./UserInterface/Property/RentProperty";
+import BuyProperty from "./UserInterface/Property/BuyProperty";
 import Services from "./UserInterface/Service/Services";
 import ContactUs from "./UserInterface/ContactUs/ContactUs";
 import AddProperty from "./UserInterface/AddProperty/AddProperty";
@@ -17,6 +19,7 @@ import SellerVirtualTour from "./SellerInterface/SellerVirtuaTour/SellerVirtualT
 import SellerSignUp from "./SellerInterface/SellerAuth/SellerSignUp";
 import SellerLogin from "./SellerInterface/SellerAuth/SellerLogin";
 import SellerLogout from "./SellerInterface/SellerAuth/SellerLogout";
+import SellerForgetPassword from "./SellerInterface/SellerAuth/SellerForgetPassword";
 // Admin Interface Imports
 import AdminLogin from "./AdminInterface/AdminHomePage/AdminLogin";
 import AdminHomepage from "./AdminInterface/AdminHomePage/AdminHomepage";
@@ -36,6 +39,8 @@ function App() {
         <Routes>
           {/* User Interface */}
           <Route path="/" element={<Homepage />} />
+          <Route path="/rent-property" element={<RentProperty />} />
+          <Route path="/buy-property" element={<BuyProperty />} />
           <Route path="/Services" element={<Services />} />
           <Route path="/Contact" element={<ContactUs />} />
           <Route path="/AddProperty" element={<AddProperty />} />
@@ -49,6 +54,7 @@ function App() {
           <Route path="/seller-signup" element={<SellerSignUp />} />
           <Route path="/seller-login" element={<SellerLogin />} />
           <Route path="/seller-logout" element={<SellerLogout />} />
+          <Route path="/seller-forget-signup" element={<SellerForgetPassword />} />
           {/* Admin Interface */}
           <Route path="/admin-login" element={<AdminLogin />} />
           {/* <Route path="/admin-home" element={<AdminHomepage />} /> */}

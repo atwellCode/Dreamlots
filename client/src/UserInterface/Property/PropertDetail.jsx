@@ -1,17 +1,15 @@
 import React from "react";
 import Header from "../header/Header";
 import HomeFooter from "../Homepage/HomeFooter";
-import ServiceHero from "./ServiceHero";
-import ServiceCard from "./ServiceCard";
 
-function Services() {
+
+function PropertyDetail() {
   return (
     <>
       <Header />
-      <ServiceHero />
-      <ServiceCard />
+      <h1>this is rental proprty</h1>
       <HomeFooter />
     </>
   );
 }
-export default Services;
+export default PropertyDetail;

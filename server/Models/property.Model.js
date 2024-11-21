@@ -12,6 +12,7 @@ const propertySchema = new mongoose.Schema({
   areaSize: { type: String, required: true },
   bedrooms: { type: Number, required: true },
   bathrooms: { type: Number, required: true },
+  kitchens: { type: Number, required: true }, // New field for the number of kitchens
   floors: { type: Number, required: true },
   description: { type: String },
 
@@ -26,10 +27,14 @@ const propertySchema = new mongoose.Schema({
     waterSupply: { type: Boolean, default: false },
   },
 
-//   Image uploads
-garageImage: [{ type: String }], // Change this to an array of strings
-virtualTourImage: [{ type: String }],
-}, { timestamps: true }); 
+  // Image uploads
+  propertyImages: [{ type: String, required: true }], // New field for property images
+  garageImage: [{ type: String }], // Array of strings for garage images
+  virtualTourImage: [{ type: String }],
+
+  // Reference to the user who owns the property
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+}, { timestamps: true });
 
 // Create a model using the schema
 const Property = mongoose.model('Property', propertySchema);

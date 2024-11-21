@@ -118,7 +118,7 @@ const Header = () => {
               onClick={handleMenuClose}
               sx={{ paddingLeft: 6 }}
               component={Link}
-              to="/buyproperty"
+              to="/buy-property"
             >
               <ListItemText primary="Buy Property" />
             </ListItem>
@@ -127,7 +127,7 @@ const Header = () => {
               onClick={handleMenuClose}
               sx={{ paddingLeft: 6 }}
               component={Link}
-              to="/rentproperty"
+              to="/rent-property"
             >
               <ListItemText primary="Rent Property" />
             </ListItem>
@@ -237,14 +237,14 @@ const Header = () => {
             <MenuItem
               onClick={handleMenuClose}
               component={Link}
-              to="/buyproperty"
+              to="/buy-property"
             >
               Buy Property
             </MenuItem>
             <MenuItem
               onClick={handleMenuClose}
               component={Link}
-              to="/rentproperty"
+              to="/rent-property"
             >
               Rent Property
             </MenuItem>

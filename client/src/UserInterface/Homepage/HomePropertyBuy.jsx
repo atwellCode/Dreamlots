@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import cardImage from "../../assets/prop1.jpg"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SectionContainer = styled("div")({
   paddingTop: "4rem",
@@ -129,6 +129,8 @@ const HomePropertyBuy = () => {
           </Grid>
           <Grid item>
             <Button
+            component={Link}
+              to="/buy-property"
               variant="contained"
               color="primary"
               sx={{
