@@ -5,6 +5,7 @@ require('dotenv').config();
 const connectDB = require('./db/dbConnection.db');
 const propertyRoutes = require('./Routes/property.Routes');
 const userRoutes = require('./Routes/user.Routes');
+const commentRoutes = require('./Routes/comment.Routes')
 
 const app = express();
 
@@ -20,6 +21,7 @@ connectDB();
 // Routes
 app.use("/property", propertyRoutes);
 app.use("/user", userRoutes);
+app.use("/comment", commentRoutes);
 
 
 // Define the port from .env file or fallback to 3000

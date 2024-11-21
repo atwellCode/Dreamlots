@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the schema for comments
 const commentSchema = new mongoose.Schema({
   content: {
     type: String,
@@ -8,12 +7,12 @@ const commentSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // References the User model (optional)
+    ref: 'User',
     required: true,
   },
   property: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Property', // References the Property model
+    ref: 'Property',
     required: true,
   },
   createdAt: {
